@@ -4,8 +4,8 @@ pipeline {
     environment {
         // Store environment variables used throughout the pipeline
         DOCKER_CREDENTIALS_ID = 'roseaw-dockerhub'        // Jenkins credential ID for authenticating with Docker Hub
-        GITHUB_URL = 'https://github.com/miamioh-cit/225-lab3-8.git'  // GitHub repository containing Kubernetes YAML files
-        KUBECONFIG = credentials('roseaw-225')             // Jenkins stored credential for accessing your Kubernetes cluster
+        GITHUB_URL = 'https://github.com/JLuzzy/225-lab3-8.git'  // GitHub repository containing Kubernetes YAML files
+        KUBECONFIG = credentials('lusnakj-225')             // Jenkins stored credential for accessing your Kubernetes cluster
     }
 
     stages {
@@ -37,7 +37,7 @@ pipeline {
                     // The secret contains MongoDB credentials (username/password) used by both Mongo and Mongo Express
 
                     // Apply all required Kubernetes manifests in correct order
-                    sh 'kubectl apply -f mongo-secret.yaml'       // Secret containing credentials
+                    //sh 'kubectl apply -f mongo-secret.yaml'       // Secret containing credentials
                     sh 'kubectl apply -f mongo.yaml'              // MongoDB StatefulSet or Deployment
                     sh 'kubectl apply -f mongo-configmap.yaml'    // ConfigMap for Mongo initialization parameters
                     sh 'kubectl apply -f mongo-express.yaml'      // Mongo Express web interface
